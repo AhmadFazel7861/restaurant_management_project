@@ -6,5 +6,6 @@ from .models import MenuCategory
 from .serializers import MenuCategorySerializer
 
 class MenuCategoryListView(ListAPIView):
-    queryset = MenuCategory.object.all()
+    queryset = MenuCategory.objects.all()
+
     serializer_class = MenuCategorySerializer
