@@ -5,7 +5,7 @@ from .models import MenuCategory
 from .models import MenuItem 
 from .serializers import MenuCategorySerializer
 from .serializers import MenuItemSerializer
-# from django.shortcuts import render
+
 
 class MenuCategoryListView(ListAPIView):
     queryset = MenuCategory.objects.all()
@@ -13,10 +13,13 @@ class MenuCategoryListView(ListAPIView):
 
 class MenuItemPagination(PageNumberPagination):
     page_size = 10
-    page_size_query_param ='page_size'
+    page_size_query_param = 'page_size'
     max_page_size = 100
 
 class MenuItemViewSet(viewsets.ViewSet):
+    """
+    ViewSet for listing menu items with optional search functionality.
+    """
     pagination_class = MenuItemPagination
 
     def list(self, request):
