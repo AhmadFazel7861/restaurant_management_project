@@ -1,4 +1,3 @@
-# from django.shortcuts import render
 from rest_framework.generics import ListAPIView
 from rest_framework import viewsets
 from rest_framework.pagination import PageNumberPagination
@@ -6,6 +5,7 @@ from .models import MenuCategory
 from .models import MenuItem 
 from .serializers import MenuCategorySerializer
 from .serializers import MenuItemSerializer
+# from django.shortcuts import render
 
 class MenuCategoryListView(ListAPIView):
     queryset = MenuCategory.objects.all()
@@ -25,9 +25,7 @@ class MenuItemViewSet(viewsets.ViewSet):
 
         if query:
             items = items.filter(name__icontains=query)
-
         paginator = self.pagination_class()
         paginated_items = paginator.paginate_queryset(items,request)
-
         serializer = MenuItemSerializer(paginated_items, many=True)
         return paginator.get_paginated_response(serializer.data)    
