@@ -30,11 +30,17 @@ class MenuItemViewSet(viewsets.ViewSet):
         return [AllowAny()]    
 
     def list(self, request):
-        query = request.query_params.get('search',None)
+        search_query = request.query_params.get('search',None)
+        category_query = request.query_params.get('category',None)
+        
         items = MenuItem.objects.all()
 
-        if query:
-            items = items.filter(name__icontains=query)
+        if search_query:
+            items = items.filter(name__icontains=search_query)
+
+        if category_query:
+            items = items.filter(category__name__icontains=category_query)
+
         paginator = self.pagination_class()
         paginated_items = paginator.paginate_queryset(items,request)
         serializer = MenuItemSerializer(paginated_items, many=True)
