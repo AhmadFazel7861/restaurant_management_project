@@ -40,7 +40,7 @@ class MenuItemViewSet(viewsets.ViewSet):
         return paginator.get_paginated_response(serializer.data) 
 
     def update(self,request, pk=None):
-        menu_item = get_object_or_404(menuItem, pk=pk)
+        menu_item = get_object_or_404(MenuItem, pk=pk)
         serializer = MenuItemSerializer(menu_item, data=request.data, partial=True) 
         if serializer.is_valid():
             serializer.save()
