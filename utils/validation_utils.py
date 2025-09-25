@@ -1,17 +1,17 @@
-from email_validator import valid_email, EmailnotvalidError
+from email_validator import validate_email, EmailNotValidError
 import logging
 
-logger = logging.getlogger(__name__)
+logger = logging.getLogger(__name__)
 
 def is_valid_email(email: str) -> bool:
     """
-    Validate an email address using python's email_validator pakage.
+    Validate an email address using python's email_validator package.
     Returns True if valid, False otherwise.
     """
     try:
-        valid_email(email)
+        validate_email(email)
         return True
-    except EmailnotvalidError as e:
+    except EmailNotValidError as e:
         logger.error(f"Invalid email '{email}': {str(e)}")
-        return Flase
+        return False
             
