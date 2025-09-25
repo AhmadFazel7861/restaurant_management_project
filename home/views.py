@@ -1,5 +1,6 @@
 from rest_framework.generics import ListAPIView
 from rest_framework import viewsets, status
+from utils.validation_utils import is_valid_email
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAdminUser, AllowAny
