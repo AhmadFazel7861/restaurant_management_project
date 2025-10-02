@@ -8,5 +8,5 @@ urlpatterns = [
     path('menu-categories/', MenuCategoryListView.as_view(), name='menu-categories'),
     path('menu-items/', menu_item_list, name='menu-items-list'),
     path('menu-items/<int:pk>/', menu_item_update, name='menu-items-update'),
-    
+    path('api/tables/<int:pk>/', TableDetailAPIView.as_view(), name='table-dtail'),
 ]
