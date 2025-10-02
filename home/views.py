@@ -1,12 +1,13 @@
 from rest_framework.generics import ListAPIView
-from rest_framework import viewsets, status
+from rest_framework import viewsets, status, generics
 from utils.validation_utils import is_valid_email
 from rest_framework.response import Response
 from rest_framework.pagination import PageNumberPagination
 from rest_framework.permissions import IsAdminUser, AllowAny
-from .models import MenuCategory, MenuItem
-from .serializers import MenuCategorySerializer, MenuItemSerializer
+from .models import MenuCategory, MenuItem, Table
+from .serializers import MenuCategorySerializer, MenuItemSerializer, TableSerializer
 from django.shortcuts import get_object_or_404
+from re
 
 
 class MenuCategoryListView(ListAPIView):
@@ -54,3 +55,6 @@ class MenuItemViewSet(viewsets.ViewSet):
             return Response(serializer.data, status=status.HTTP_200_OK)     
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
            
+class TableDetailAPIView(generics.RetrieveAPIView):
+    queryset = Table.objects.all()
+    serializer_class = TableSerializer
